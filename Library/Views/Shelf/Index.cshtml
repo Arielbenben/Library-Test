@@ -1,0 +1,57 @@
+﻿@model IEnumerable<Library.Models.ShelfModel>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Shelves</h1>
+
+<p>
+    @Html.ActionLink("Create New", "Create", new { libraryId = ViewBag.LibraryId })
+</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Width)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Height)
+            </th>
+            <th hidden>
+                @Html.DisplayNameFor(model => model.LibraryId)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Width)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Height)
+            </td>
+            <td hidden>
+                @Html.DisplayFor(modelItem => item.LibraryId)
+            </td>
+            <td>
+                @Html.ActionLink("Sets", "Index","Set", new { shelfid = item.Id }) |
+                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+<div>
+    @Html.ActionLink("Back to Library", "Index", "Library", new { /* id=item.PrimaryKey */ })
+</div>
